@@ -8,8 +8,16 @@ jobs:
           steps:
             - name: copying the codes
               uses: actions/checkout@v4
+
             - name: installing node
               uses: actions/setup-node@v4
+
             - name: check the node version
               run: node -v
+
+            - name: install dependencies
+              run: npm install --frozen-lockfile
+              
+            - name: check the dependencies
+              run: npm list
              
