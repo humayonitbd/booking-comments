@@ -6,5 +6,10 @@ jobs:
      test-code:
           runs-on: ubuntu-latest
           steps:
-            - name: First step
-              run: echo "First step"
+            - name: copying the codes
+              uses: actions/checkout@v4
+            - name: installing node
+              uses: actions/setup-node@v4
+            - name: check the node version
+              run: node -v
+             
