@@ -23,4 +23,20 @@ jobs:
 
             # - name: Run the tests
             #   run: npm test
-             
+     build-code:
+          runs-on: ubuntu-latest    
+          steps:
+            - name: installing node
+              uses: actions/setup-node@v4
+
+            - name: copying the codes
+              uses: actions/checkout@v4
+
+            - name: check the node version              
+              run: node -v
+
+            - name: install dependencies
+              run: npm install --frozen-lockfile
+
+            - name: build the code
+              run: npm run build   
