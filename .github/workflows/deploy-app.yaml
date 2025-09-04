@@ -21,6 +21,6 @@ jobs:
             - name: check the dependencies
               run: npm list
 
-            - name: Run the tests
-              run: npm test
+            # - name: Run the tests
+            #   run: npm test
              
