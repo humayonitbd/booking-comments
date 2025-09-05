@@ -2,6 +2,8 @@ name: Ready the code and deploy
 
 # on: [push, workflow_dispatch] 
 on: 
+  pull_request:
+    types: opened
   push:
     branches:
       - 'main'
