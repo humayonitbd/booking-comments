@@ -25,6 +25,7 @@ jobs:
             #   run: npm test
      build-code:
           runs-on: ubuntu-latest    
+          needs: test-code
           steps:
             - name: installing node
               uses: actions/setup-node@v4
@@ -42,6 +43,7 @@ jobs:
               run: npm run build   
      deploy-code:
           runs-on: ubuntu-latest
+          needs: build-code
           steps:
             - name: Deploy the codes
               run : echo "deploying...."
