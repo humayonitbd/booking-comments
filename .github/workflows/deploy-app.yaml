@@ -40,3 +40,8 @@ jobs:
 
             - name: build the code
               run: npm run build   
+     deploy-code:
+          runs-on: ubuntu-latest
+          steps:
+            - name: Deploy the codes
+              run : echo "deploying...."
