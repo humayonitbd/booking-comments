@@ -37,7 +37,6 @@ app.use(
 
 
 
-// application routes
 app.use('/api/v1', router);
 
 app.get('/', (req: Request, res: Response) => {
