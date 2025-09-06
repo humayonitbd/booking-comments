@@ -59,6 +59,7 @@ jobs:
                 ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
             - name: Deploy the VPS Server
               env:
+                  APP_ENV: ${{ secrets.APP_ENV }}
                   EC2_HOST: ${{ secrets.EC2_HOST }}
                   EC2_USER: ${{ secrets.EC2_USER }}
               run: |
@@ -72,7 +73,7 @@ jobs:
                     --exclude='.github' \
                     . $EC2_USER@$EC2_HOST:~/app
 
-                  ssh $EC2_USER@$EC2_HOST "echo '${{ secrets.APP_ENV }}' >> ~/app/.env"
+                  ssh $EC2_USER@$EC2_HOST "echo \"$APP_ENV\" > ~/app/.env"
 
                   # Install Production Dependencies on Ec2
                   ssh $EC2_USER@$EC2_HOST "cd ~/app && export PATH=$PATH:/run/user/1000/fnm_multishells/112424_1734077954807/bin && npm install --frozen-lockfile && npm run build"
