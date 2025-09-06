@@ -74,7 +74,7 @@ jobs:
                     . $EC2_USER@$EC2_HOST:~/app
 
                   # Create .env file inside app folder
-                  echo "$APP_ENV" | ssh $EC2_USER@$EC2_HOST "cat > ~/app/.env"
+                  ssh $EC2_USER@$EC2_HOST "cd ~/app && echo 'APP_ENV=$APP_ENV' > .env"
 
                   # Install Production Dependencies on Ec2
                   ssh $EC2_USER@$EC2_HOST "cd ~/app && export PATH=$PATH:/run/user/1000/fnm_multishells/112424_1734077954807/bin && npm install --frozen-lockfile && npm run build"
