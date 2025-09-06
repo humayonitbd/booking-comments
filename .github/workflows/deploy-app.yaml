@@ -53,7 +53,6 @@ jobs:
                 SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
               run: |
                 mkdir -p ~/.ssh/
-                # echo "$EC2_SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
                 echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
                 chmod 600 ~/.ssh/id_rsa
                 ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
@@ -61,7 +60,6 @@ jobs:
               env:
                   EC2_HOST: ${{ secrets.EC2_HOST }}
                   EC2_USER: ${{ secrets.EC2_USER }}
-                  APP_ENV: ${{ secrets.APP_ENV }}
               run: |
                   # Create deployment directory
                   ssh $EC2_USER@$EC2_HOST "mkdir -p ~/app"
@@ -73,8 +71,7 @@ jobs:
                     --exclude='.github' \
                     . $EC2_USER@$EC2_HOST:~/app
 
-                  # Create .env file inside app folder
-                  ssh $EC2_USER@$EC2_HOST "cd ~/app && echo 'APP_ENV=$APP_ENV' > .env"
+                  ssh $EC2_USER@$EC2_HOST "echo '${{ secrets.APP_ENV }}' > ~/app/.env"
 
                   # Install Production Dependencies on Ec2
                   ssh $EC2_USER@$EC2_HOST "cd ~/app && export PATH=$PATH:/run/user/1000/fnm_multishells/112424_1734077954807/bin && npm install --frozen-lockfile && npm run build"

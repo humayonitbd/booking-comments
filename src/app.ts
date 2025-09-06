@@ -48,3 +48,17 @@ app.use(globalErrorHandler);
 app.use(notFound);
 
 export default app;
+
+// # Create .env file inside app folder
+//                 #   ssh $EC2_USER@$EC2_HOST "cd ~/app && echo 'APP_ENV=$APP_ENV' > .env"
+
+//                 # Create .env file inside app folder
+//                 #   echo "$APP_ENV" | ssh $EC2_USER@$EC2_HOST "cat > ~/app/.env"
+
+
+//                 # Create .env file in app folder
+//                 #   ssh $EC2_USER@$EC2_HOST "cat > ~/app/.env" <<'EOF'
+//                 #   $APP_ENV
+//                 #   EOF
+
+//                 # ssh $EC2_USER@$EC2_HOST "echo \"$APP_ENV\" > ~/app/.env"
